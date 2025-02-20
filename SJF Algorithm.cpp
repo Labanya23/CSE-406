@@ -8,7 +8,7 @@ int burst_time[]={6,2,8,3,4};
     //cin>>burst_time[i];
 //}
 //int wait_time[n],turnaround_time[n];
-int wait_time[5],turnaround_time[5];
+int wait_time[5],turnaround_time[5],process_time[5];
 for(int i=0;i<n-1;i++){
     int min_index=i;
     for(int j=i+1;j<n;j++){
@@ -16,6 +16,8 @@ for(int i=0;i<n-1;i++){
             min_index=j;
         }
     }
+    //int temp=process_time[i];
+
     int temp=burst_time[i];
     burst_time[i]=burst_time[min_index];
     burst_time[min_index]=temp;
@@ -29,9 +31,11 @@ for(int i=0;i<n;i++){
     turnaround_time[i]=burst_time[i]+wait_time[i];
 
 }
-cout<<"Process\t BurstTime\t WaitingTime\t TurnAroundTime\n";
+//cout<<"Process\t BurstTime\t WaitingTime\t TurnAroundTime\n";
+cout<<"BurstTime\t WaitingTime\t TurnAroundTime\n";
 for(int i=0;i<n;i++){
-    cout<<i+1<<"\t"<<burst_time[i]<<"\t\t"<<wait_time[i]<<"\t\t"<<turnaround_time[i]<<endl;
+    //cout<<"P["<<i+1<<"]"<<"\t"<<burst_time[i]<<"\t\t"<<wait_time[i]<<"\t\t"<<turnaround_time[i]<<endl;
+    cout<<burst_time[i]<<"\t\t"<<wait_time[i]<<"\t\t"<<turnaround_time[i]<<endl;
 }
 
 return 0;
