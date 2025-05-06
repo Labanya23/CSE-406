@@ -2,26 +2,26 @@
 using namespace std;
 
 int fifopagereplacement(int pages[], int n, int capacity, int &hits) {
-    queue<int> q; // Queue to keep track of pages in FIFO order
-    unordered_set<int> s; // Set to keep track of pages in the cache
+    queue<int> q;
+    unordered_set<int> s;
     int page_faults = 0;
 
     for (int i = 0; i < n; i++) {
-        // If the page is not found in the cache (set)
-        if (s.find(pages[i]) == s.end()) {
-            page_faults++; // A page fault occurred
 
-            // If the cache is full, remove the oldest page (FIFO)
+        if (s.find(pages[i]) == s.end()) {
+            page_faults++;
+
+
             if (q.size() == capacity) {
-                s.erase(q.front()); // Remove the page from the set
-                q.pop(); // Remove the page from the queue
+                s.erase(q.front());
+                q.pop();
             }
 
-            // Insert the new page into the queue and set
+
             q.push(pages[i]);
             s.insert(pages[i]);
         } else {
-            hits++; // A hit occurred when the page is already in the cache
+            hits++;
         }
     }
 
@@ -36,7 +36,7 @@ int main() {
 
     int page_faults = fifopagereplacement(pages, n, capacity, hits);
 
-    // Output the results
+
     cout << "Total Page Faults: " << page_faults << endl;
     cout << "Total Hits: " << hits << endl;
 
